@@ -1,22 +1,88 @@
-
-
-
-<section fxLayout="row wrap" fxLayoutAlign="center center">
-  <mat-card fxFlex="500px" fxFlex.xs="100%">
-      <mat-card-title>Create a new owner</mat-card-title>
-      <mat-card-content>
-          <form class="example-form">
-              <mat-form-field class="example-full-width">
-                <input matInput placeholder="Favorite food" value="Sushi">
-              </mat-form-field>
-            
-              <mat-form-field class="example-full-width">
-                <textarea matInput placeholder="Leave a comment"></textarea>
-              </mat-form-field>
-            </form>
-      </mat-card-content>
-      <mat-card-actions>
-        
-      </mat-card-actions>
-    </mat-card>
-</section>
+<div class="container">
+  <mat-card-title>Add User</mat-card-title>
+  <form class="form">
+    <div fxLayout="row">
+      <mat-form-field class="form-element">
+        <input matInput placeholder="Title" value="Mr.">
+      </mat-form-field>
+      <mat-form-field class="form-element">
+        <input matInput placeholder="Sirname" value="Kumar">
+      </mat-form-field>
+      <mat-form-field class="form-element">
+        <input matInput placeholder="First Name" value="Atul">
+      </mat-form-field>
+    </div>
+    <div fxLayout="row">
+      <mat-form-field class="form-element">
+        <input matInput placeholder="Middle Name" value="Kumar">
+      </mat-form-field>
+      <mat-form-field class="form-element">
+        <input matInput placeholder="Date of birth" value="02/07/1985">
+      </mat-form-field>
+      <mat-form-field class="form-element">
+        <input matInput placeholder="Gender" value="Male">
+      </mat-form-field>
+    </div>
+    <div fxLayout="row">
+      <mat-form-field class="form-element">
+        <input matInput placeholder="Username" value="kumaratul">
+      </mat-form-field>
+      <mat-form-field class="form-element">
+        <input matInput placeholder="Password" value="**********">
+      </mat-form-field>
+      <mat-form-field class="form-element">
+        <input matInput placeholder="Confirm Password" value="**********">
+      </mat-form-field>
+    </div>
+    <div fxLayout="row">
+      <mat-form-field class="form-element">
+        <input matInput placeholder="Address line 1" value="B 231">
+      </mat-form-field>
+      <mat-form-field class="form-element">
+        <input matInput placeholder="Address line 2" value="Sector 88">
+      </mat-form-field>
+      <mat-form-field class="form-element">
+        <input matInput placeholder="Address line 3" value="Noida">
+      </mat-form-field>
+    </div>
+    <div fxLayout="row">
+      <mat-form-field class="form-element">
+        <input matInput placeholder="Postal code" value="369699">
+      </mat-form-field>
+      <mat-form-field class="form-element">
+        <input matInput placeholder="Contact mobile telephone" value="8588889696">
+      </mat-form-field>
+      <mat-form-field class="form-element">
+        <input matInput placeholder="Contact home telephone" value="8588889696">
+      </mat-form-field>
+    </div>
+    <div fxLayout="row">
+      <mat-form-field class="form-element">
+        <input matInput placeholder="Country" value="369699">
+      </mat-form-field>
+      <mat-form-field class="form-element">
+        <input matInput placeholder="State" value="8588889696">
+      </mat-form-field>
+      <mat-form-field class="form-element">
+        <input matInput placeholder="City/town" value="8588889696">
+      </mat-form-field>
+    </div>
+    <div fxLayout="row">
+      <mat-form-field class="form-element">
+        <input matInput placeholder="Email" value="kumarattttt@gmail.com">
+      </mat-form-field>
+      <mat-form-field class="form-element">
+        <input matInput placeholder="Role" value="Admin">
+      </mat-form-field>
+    </div>
+    <div fxLayout="row">
+      <div class="float-right" >
+          <button mat-raised-button color="primary">Cancel</button>
+      </div>
+           <div class="float-left">
+              <button mat-raised-button color="primary">Create</button>
+              <button mat-raised-button color="primary">Clear</button>
+           </div>
+      </div>
+  </form>
+</div>
