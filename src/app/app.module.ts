@@ -1,6 +1,8 @@
 import { LayoutModule } from '@angular/cdk/layout';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { NgModule } from '@angular/core';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {MatNativeDateModule} from '@angular/material/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
@@ -11,6 +13,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import {DemoMaterialModule} from '../material-module';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -30,8 +33,12 @@ export const createTranslateLoader = (http: HttpClient) => {
     imports: [
         BrowserModule,
         AppRoutingModule,
+        FormsModule,
+        MatNativeDateModule,
+        ReactiveFormsModule,
         BrowserAnimationsModule,
         LayoutModule,
+        DemoMaterialModule,
         OverlayModule,
         HttpClientModule,
         TranslateModule.forRoot({
