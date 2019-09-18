@@ -1,7 +1,10 @@
 <div class="container">
   <mat-card-title>Add User</mat-card-title>
   <form class="form">
-    <div fxLayout="row">
+    <div fxLayout="row" class="form_subtitle" fxLayoutAlign="space-between center">
+      <div>Personal information</div>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="space-between center">
       <mat-form-field class="form-element">
         <input matInput placeholder="Title" value="Mr.">
       </mat-form-field>
@@ -23,6 +26,9 @@
         <input matInput placeholder="Gender" value="Male">
       </mat-form-field>
     </div>
+    <div fxLayout="row" class="form_subtitle" fxLayoutAlign="space-between center">
+      <div>Login Credentials</div>
+    </div>
     <div fxLayout="row">
       <mat-form-field class="form-element">
         <input matInput placeholder="Username" value="kumaratul">
@@ -33,6 +39,9 @@
       <mat-form-field class="form-element">
         <input matInput placeholder="Confirm Password" value="**********">
       </mat-form-field>
+    </div>
+    <div fxLayout="row" class="form_subtitle" fxLayoutAlign="space-between center">
+      <div>Address & Contact Information</div>
     </div>
     <div fxLayout="row">
       <mat-form-field class="form-element">
@@ -67,6 +76,9 @@
         <input matInput placeholder="City/town" value="8588889696">
       </mat-form-field>
     </div>
+    <div fxLayout="row" class="form_subtitle" fxLayoutAlign="space-between center">
+      <div>Assign Role to User</div>
+    </div>
     <div fxLayout="row">
       <mat-form-field class="form-element">
         <input matInput placeholder="Email" value="kumarattttt@gmail.com">
@@ -75,14 +87,13 @@
         <input matInput placeholder="Role" value="Admin">
       </mat-form-field>
     </div>
-    <div fxLayout="row">
-      <div class="float-right" >
-          <button mat-raised-button color="primary">Cancel</button>
+    <div fxLayout="row" fxLayoutAlign="space-between none">
+      <div>
+        <button type="button" mat-raised-button color="primary">Cancel</button>
       </div>
-           <div class="float-left">
-              <button mat-raised-button color="primary">Create</button>
-              <button mat-raised-button color="primary">Clear</button>
-           </div>
+      <div>
+        <button type="submit" mat-raised-button color="primary">Create</button>
       </div>
+    </div>
   </form>
 </div>
