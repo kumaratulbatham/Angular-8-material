@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormGroupDirective, Validators, FormControl, NgForm } from '@angular/forms';
 import {ErrorStateMatcher} from '@angular/material/core';
+import { AppConstants } from 'src/app/shared/constants/app.constant';
 
 /** Error when invalid control is dirty, touched, or submitted. */
 export class MyErrorStateMatcher implements ErrorStateMatcher {
@@ -19,20 +20,13 @@ export class Screen1Component implements OnInit {
   addUserForm: FormGroup;
   titlesArray : any; 
   matcher = new MyErrorStateMatcher();
+  genderArray: any;
+  userRole: any;
 
   constructor(private fb: FormBuilder) { 
-    this.titlesArray = [
-      { key: '1', value: 'Captain' },
-      { key: '2', value: 'Dame' },
-      { key: '3', value: 'Dr' },
-      { key: '4', value: 'Lady' },
-      { key: '5', value: 'Lord' },
-      { key: '6', value: 'Miss' },
-      { key: '7', value: 'Mr' },
-      { key: '8', value: 'Mrs' },
-      { key: '9', value: 'Rev' },
-      { key: '10', value: 'Sir' },
-    ];
+    this.genderArray = AppConstants.gender;
+    this.titlesArray = AppConstants.title;
+    // this.userRole = AppConstants.role;
   }
 
   ngOnInit() {

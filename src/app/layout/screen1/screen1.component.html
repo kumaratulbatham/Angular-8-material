@@ -48,8 +48,8 @@
       <mat-form-field class="form-element">
         <mat-label>Gender</mat-label>
         <mat-select formControlName="gender" [errorStateMatcher]="matcher">
-          <mat-option *ngFor="let oneTitle of titlesArray" [value]="oneTitle.key">
-            {{oneTitle.value}}
+          <mat-option *ngFor="let gender of genderArray" [value]="gender.key">
+            {{gender.value}}
           </mat-option>
         </mat-select>
         <mat-error *ngIf="addUserForm.controls.gender.hasError('required')">
