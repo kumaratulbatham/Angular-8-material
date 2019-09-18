@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, FormGroupDirective, NgForm, Validators } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { AppConstants } from 'src/app/shared/constants/app.constant';
+import { Router } from '@angular/router';
 
 /** Error when invalid control is dirty, touched, or submitted. */
 export class MyErrorStateMatcher implements ErrorStateMatcher {
@@ -25,7 +26,7 @@ export class Screen1Component implements OnInit {
   favoriteSeason: string;
   seasons: string[] = ['Winter', 'Spring'];
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private router: Router) {
     this.genderArray = AppConstants.gender;
     this.titlesArray = AppConstants.title;
     this.userRole = AppConstants.dashboardHeaderTitle;
@@ -65,6 +66,7 @@ export class Screen1Component implements OnInit {
       return;
     }
     console.log(this.addUserForm.value)
+    this.router.navigate(['/screen2']);
 
   }
 
