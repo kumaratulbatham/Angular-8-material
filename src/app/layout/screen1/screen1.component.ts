@@ -28,12 +28,11 @@ export class Screen1Component implements OnInit {
   constructor(private fb: FormBuilder) { 
     this.genderArray = AppConstants.gender;
     this.titlesArray = AppConstants.title;
-    // this.userRole = AppConstants.role;
+    this.userRole = AppConstants.dashboardHeaderTitle;
   }
 
   ngOnInit() {
     this.getUserForm();
-    console.log(this.titlesArray)
   }
 
   getUserForm(){

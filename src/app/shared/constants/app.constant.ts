@@ -47,20 +47,8 @@ export class AppConstants {
     public static dashboardHeaderTitle = [
   
       {
-        key: 'CMSNR',
-        value: 'Commissioner'
-      },
-      {
-        key: 'GENPR',
-        value: 'GP'
-      },
-      {
-        key: 'CLVAL',
-        value: 'Clinical Validator'
-      },
-      {
-        key: 'GPADM',
-        value: 'GP Admin'
+        key: 'CANDI',
+        value: 'Candidate'
       },
       {
         key: 'SUADM',
