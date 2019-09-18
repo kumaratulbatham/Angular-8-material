@@ -167,13 +167,13 @@
         </mat-error>
       </mat-form-field>
       <div class="form-element">
-        <mat-radio-group aria-labelledby="roleCheck"  formControlName="role">
           <label id="roleCheck">Pick One</label>
-          <mat-radio-button class="example-radio-button" *ngFor="let season of seasons" [value]="season">
+        <mat-radio-group class="radio-group" aria-labelledby="roleCheck"  formControlName="role">
+          <mat-radio-button class="radio-button" *ngFor="let season of seasons" [value]="season">
             {{season}}
           </mat-radio-button>
         </mat-radio-group>
-        <mat-error *ngIf="addUserForm.controls.role.hasError('required')">
+        <mat-error class="radio-button-error" *ngIf="addUserForm.controls.role.hasError('required')">
           Role is <strong>required</strong>
         </mat-error>
       </div>

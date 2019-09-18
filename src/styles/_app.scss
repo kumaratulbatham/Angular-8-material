@@ -33,3 +33,15 @@
     padding: 0px 0px 0px 10px;
     color: #fff;
   }
+
+  .radio-group {
+    display: flex;
+    flex-direction: row;
+  }
+  
+  .radio-button {
+    margin: 5px;
+  }
+  .radio-button-error{
+    font-size: 75%;
+  }
