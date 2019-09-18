@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, FormGroupDirective, Validators, FormControl, NgForm } from '@angular/forms';
-import {ErrorStateMatcher} from '@angular/material/core';
+import { FormBuilder, FormControl, FormGroup, FormGroupDirective, NgForm, Validators } from '@angular/forms';
+import { ErrorStateMatcher } from '@angular/material/core';
 import { AppConstants } from 'src/app/shared/constants/app.constant';
 
 /** Error when invalid control is dirty, touched, or submitted. */
@@ -18,14 +18,14 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 })
 export class Screen1Component implements OnInit {
   addUserForm: FormGroup;
-  titlesArray : any; 
+  titlesArray: any;
   matcher = new MyErrorStateMatcher();
   genderArray: any;
   userRole: any;
   favoriteSeason: string;
   seasons: string[] = ['Winter', 'Spring'];
 
-  constructor(private fb: FormBuilder) { 
+  constructor(private fb: FormBuilder) {
     this.genderArray = AppConstants.gender;
     this.titlesArray = AppConstants.title;
     this.userRole = AppConstants.dashboardHeaderTitle;
@@ -35,10 +35,10 @@ export class Screen1Component implements OnInit {
     this.getUserForm();
   }
 
-  getUserForm(){
+  getUserForm() {
     this.addUserForm = this.fb.group({
       title: ['', [Validators.required]],
-      middleName: ['', [Validators.required,Validators.pattern("^[a-zA-Z]*$"), Validators.maxLength(30)]],
+      middleName: ['', [Validators.required, Validators.pattern("^[a-zA-Z]*$"), Validators.maxLength(30)]],
       firstName: ['', [Validators.required, Validators.pattern("^[a-zA-Z]*$"), Validators.maxLength(30)]],
       lastName: ['', [Validators.required, Validators.pattern("^[a-zA-Z]*$"), Validators.maxLength(30)]],
       dob: ['', Validators.required],
@@ -54,14 +54,14 @@ export class Screen1Component implements OnInit {
       mobileNo: ['', [Validators.required, Validators.maxLength(11), Validators.minLength(10)]],
       phoneNo: ['', [Validators.required, Validators.maxLength(11), Validators.minLength(10)]],
       country: ['', [Validators.required]],
-      state: ['',[Validators.required]],
+      state: ['', [Validators.required]],
       city: ['', [Validators.required, Validators.pattern('^[a-zA-Z0-9 ]*$')]],
       role: ['', Validators.required],
     });
   }
 
-  onsubmit(){
-    if(this.addUserForm.invalid == true){
+  onsubmit() {
+    if (this.addUserForm.invalid == true) {
       return;
     }
     console.log(this.addUserForm.value)

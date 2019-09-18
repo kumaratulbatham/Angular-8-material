@@ -15,4 +15,8 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('isLoggedin', 'true');
         this.router.navigate(['/dashboard']);
     }
+
+    goForgotPassword(){
+        this.router.navigate(['/forgot-password']);
+    }
 }
