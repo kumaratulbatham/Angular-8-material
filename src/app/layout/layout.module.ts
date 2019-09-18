@@ -7,6 +7,8 @@ import { MatListModule } from '@angular/material/list';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { MatTableModule } from '@angular/material/table';
 import { TranslateModule } from '@ngx-translate/core';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { TopnavComponent } from './components/topnav/topnav.component';
@@ -25,8 +27,10 @@ import { Screen2Component } from './screen2/screen2.component';
         MatIconModule,
         MatInputModule,
         MatMenuModule,
+        MatTableModule,
         MatListModule,
-        TranslateModule
+        TranslateModule,
+        FlexLayoutModule.withConfig({addFlexToParent: false})
     ],
     declarations: [Screen2Component, LayoutComponent, NavComponent, TopnavComponent, SidebarComponent, ]
 
