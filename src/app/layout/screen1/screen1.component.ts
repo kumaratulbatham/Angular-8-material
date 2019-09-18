@@ -22,6 +22,8 @@ export class Screen1Component implements OnInit {
   matcher = new MyErrorStateMatcher();
   genderArray: any;
   userRole: any;
+  favoriteSeason: string;
+  seasons: string[] = ['Winter', 'Spring'];
 
   constructor(private fb: FormBuilder) { 
     this.genderArray = AppConstants.gender;
