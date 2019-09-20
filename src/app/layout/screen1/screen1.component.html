@@ -4,7 +4,7 @@
     <div fxLayout="row" class="form_subtitle" fxLayoutAlign="space-between center">
       <div>Personal information</div>
     </div>
-    <div fxLayout="row" fxLayoutAlign="space-between center">
+    <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="space-between center">
       <mat-form-field class="form-element">
         <mat-label>Title</mat-label>
         <mat-select formControlName="title" [errorStateMatcher]="matcher">
@@ -29,7 +29,7 @@
         </mat-error>
       </mat-form-field>
     </div>
-    <div fxLayout="row">
+    <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="space-between center">
       <mat-form-field class="form-element">
         <input matInput formControlName="middleName" placeholder="Middle Name" [errorStateMatcher]="matcher">
         <mat-error *ngIf="addUserForm.controls.middleName.hasError('required')">
@@ -60,7 +60,7 @@
     <div fxLayout="row" class="form_subtitle" fxLayoutAlign="space-between center">
       <div>Login Credentials</div>
     </div>
-    <div fxLayout="row">
+    <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="space-between center">
       <mat-form-field class="form-element">
         <input autocomplete="new-password" matInput formControlName="userName" placeholder="Username"
           [errorStateMatcher]="matcher">
@@ -86,7 +86,7 @@
     <div fxLayout="row" class="form_subtitle" fxLayoutAlign="space-between center">
       <div>Address & Contact Information</div>
     </div>
-    <div fxLayout="row">
+    <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="space-between center">
       <mat-form-field class="form-element">
         <input matInput formControlName="addressLine1" placeholder="Address line 1" [errorStateMatcher]="matcher">
         <mat-error *ngIf="addUserForm.controls.addressLine1.hasError('required')">
@@ -106,7 +106,7 @@
         </mat-error>
       </mat-form-field>
     </div>
-    <div fxLayout="row">
+    <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="space-between center">
       <mat-form-field class="form-element">
         <input matInput formControlName="pinCode" placeholder="Postal code" [errorStateMatcher]="matcher">
         <mat-error *ngIf="addUserForm.controls.pinCode.hasError('required')">
@@ -126,7 +126,7 @@
         </mat-error>
       </mat-form-field>
     </div>
-    <div fxLayout="row">
+    <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="space-between center">
       <mat-form-field class="form-element">
         <input matInput formControlName="country" placeholder="Country" [errorStateMatcher]="matcher">
         <mat-error *ngIf="addUserForm.controls.country.hasError('required')">
@@ -149,7 +149,7 @@
     <div fxLayout="row" class="form_subtitle" fxLayoutAlign="space-between center">
       <div>Assign Role to User</div>
     </div>
-    <div fxLayout="row">
+    <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="space-between center">
       <mat-form-field class="form-element">
         <input matInput formControlName="emailAddress" placeholder="Email" [errorStateMatcher]="matcher">
         <mat-error
