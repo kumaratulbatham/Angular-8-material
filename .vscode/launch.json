@@ -18,7 +18,7 @@
       "type": "chrome",
       "request": "attach",
       "name": "Attach Chrome",
-      "port": 9222,
+      "port": 4200,
       "webRoot": "${workspaceFolder}",
       "urlFilter": "https://localhost:4200/*"
     },
