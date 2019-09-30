@@ -15,7 +15,8 @@ const routes: Routes = [
     {
         path: 'forgot-password',
         loadChildren: './forgot-password/forgot-password.module#ForgotPasswordModule'
-    }
+    },
+    { path: '**', redirectTo: 'login' }
     
 ];
 
