@@ -17,4 +17,8 @@ export class ForgotPasswordComponent implements OnInit {
     this.router.navigate(['/dashboard']);
   }
 
+  onSubmit(){
+    console.log('On Submit Forgot Password');
+  }
+
 }
