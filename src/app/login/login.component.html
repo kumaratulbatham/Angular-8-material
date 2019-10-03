@@ -1,38 +1,47 @@
 <div class="login-page">
     <div class="content">
-        <!-- <h1 class="app-name">Sb Admin Material</h1> -->
-        <form class="login-form" fxFlex  >
+        <form class="login-form" fxFlex [formGroup]="loginForm" (ngSubmit)="onLogin()">
             <div class="text-center">
                 <h2 class="app-name">Login</h2>
             </div>
-            <div fxFlex  fxlayout="row" fxlayout.lt-md="column">
+            <div fxFlex fxlayout="row" fxlayout.lt-md="column">
                 <div fxFlexFill>
                     <mat-form-field class="w-100">
-                        <input matInput placeholder="Email">
+                        <input matInput type="email" formControlName="emailAddress" [errorStateMatcher]="matcher"
+                            placeholder="Email">
+                        <mat-error *ngIf="loginForm.controls.emailAddress.hasError('required')">
+                            Email is <strong>required</strong>
+                        </mat-error>
+                        <mat-error *ngIf="loginForm.controls.emailAddress.hasError('email')">
+                            Email is <strong>invalid</strong>
+                        </mat-error>
                     </mat-form-field>
                 </div>
             </div>
-            <div fxFlex  fxLayout="row" fxLayout.lt-md="column">
+            <div fxFlex fxLayout="row" fxLayout.lt-md="column">
                 <div fxFlexFill>
                     <mat-form-field class="w-100">
-                        <input matInput type="password" placeholder="Password">
+                        <input matInput type="password" formControlName="password" [errorStateMatcher]="matcher"
+                            placeholder="Password">
+                        <mat-error *ngIf="loginForm.controls.password.hasError('required')">
+                            Password is <strong>required</strong>
+                        </mat-error>
                     </mat-form-field>
                 </div>
             </div>
-            <div fxFlex  fxLayout="row" fxLayout.lt-md="column" style="margin: 20px 0 30px 0">
+            <div fxFlex fxLayout="row" fxLayout.lt-md="column" style="margin: 20px 0 30px 0">
                 <div fxFlex>
-                        <a (click)="goToSignup()" href="javascript:void(0)">Sign up</a>
+                    <a (click)="goToSignup()" href="javascript:void(0)">Sign up</a>
                 </div>
-                <div fxFlex  fxLayoutAlign="end">
+                <div fxFlex fxLayoutAlign="end">
                     <a (click)="goForgotPassword()" href="javascript:void(0)">Forget Password</a>
                 </div>
             </div>
-            <div fxFlex  fxLayout="row" fxLayout.lt-md="column">
+            <div fxFlex fxLayout="row" fxLayout.lt-md="column">
                 <div fxFlexFill>
-                    <button mat-raised-button color="primary" class="w-100" (click)="onLogin()">Login</button>
+                    <button mat-raised-button color="primary" class="w-100">Login</button>
                 </div>
             </div>
-
         </form>
     </div>
 </div>
