@@ -1,16 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, FormGroupDirective, NgForm, Validators } from '@angular/forms';
-import { ErrorStateMatcher } from '@angular/material/core';
-import { AppConstants } from 'src/app/shared/constants/app.constant';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-
-/** Error when invalid control is dirty, touched, or submitted. */
-export class MyErrorStateMatcher implements ErrorStateMatcher {
-  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
-    const isSubmitted = form && form.submitted;
-    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
-  }
-}
+import { ErrorStateMatcherService } from 'src/app/shared/services/error.state.matcher.service';
 
 @Component({
   selector: 'app-signup',
@@ -19,10 +10,11 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 })
 export class SignupComponent implements OnInit {
   signUpForm: FormGroup;
-  matcher = new MyErrorStateMatcher();
+  matcher: any;
 
-  constructor(private fb: FormBuilder,private router: Router) {
-
+  constructor(private fb: FormBuilder, private router: Router,
+    private errorState: ErrorStateMatcherService) {
+    this.matcher = this.errorState;
   }
 
   ngOnInit() {
@@ -43,12 +35,12 @@ export class SignupComponent implements OnInit {
     if (this.signUpForm.invalid == true) {
       return;
     }
-      console.log(this.signUpForm.controls);
-      this.router.navigate(['/login']);
+    console.log(this.signUpForm.controls);
+    this.router.navigate(['/login']);
   }
 
-  goToLogin(){
-      this.router.navigate(['/login']);
+  goToLogin() {
+    this.router.navigate(['/login']);
   }
 
 }
