@@ -7,16 +7,20 @@ import { Router } from '@angular/router';
     styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-    constructor(private router: Router) {}
+    constructor(private router: Router) { }
 
-    ngOnInit() {}
+    ngOnInit() { }
 
     onLogin() {
         localStorage.setItem('isLoggedin', 'true');
         this.router.navigate(['/dashboard']);
     }
 
-    goForgotPassword(){
+    goForgotPassword() {
         this.router.navigate(['/forgot-password']);
+    }
+
+    goToSignup() {
+        this.router.navigate(['/signup']);
     }
 }
