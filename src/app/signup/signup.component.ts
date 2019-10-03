@@ -13,8 +13,8 @@ export class SignupComponent implements OnInit {
   ngOnInit() {}
 
   onLogin() {
-      localStorage.setItem('isLoggedin', 'true');
-      this.router.navigate(['/dashboard']);
+      console.log('Sign Up Here')
+      this.router.navigate(['/login']);
   }
 
   goForgotPassword(){

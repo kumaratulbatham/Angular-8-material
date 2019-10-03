@@ -11,3 +11,9 @@
         }
     }
 }
+
+@media screen and (max-width: 500px) {
+    .login-form {
+      width: 100% !important;
+    }
+  }
