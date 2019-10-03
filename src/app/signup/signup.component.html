@@ -4,10 +4,10 @@
             <div class="text-center">
                 <h2 class="app-name">Sign up</h2>
             </div>
-            <div autocomplete="new-password" fxFlex fxLayout="row" fxLayout.lt-md="column">
+            <div fxFlex fxLayout="row" fxLayout.lt-md="column">
                 <div fxFlexFill>
                     <mat-form-field class="w-100">
-                        <input formControlName="name" matInput type="text" [errorStateMatcher]="matcher"
+                        <input autocomplete="new-password" formControlName="name" matInput type="text" [errorStateMatcher]="matcher"
                             placeholder="Name">
                         <mat-error *ngIf="signUpForm.controls.name.hasError('required')">
                             Name is <strong>required</strong>
@@ -15,10 +15,10 @@
                     </mat-form-field>
                 </div>
             </div>
-            <div autocomplete="new-password" fxFlex fxLayout="row" fxLayout.lt-md="column">
+            <div fxFlex fxLayout="row" fxLayout.lt-md="column">
                 <div fxFlexFill>
                     <mat-form-field class="w-100">
-                        <input formControlName="mobileNo" matInput type="text" [errorStateMatcher]="matcher"
+                        <input autocomplete="new-password" formControlName="mobileNo" matInput type="text" [errorStateMatcher]="matcher"
                             placeholder="Mobile No.">
                         <mat-error *ngIf="signUpForm.controls.mobileNo.hasError('required')">
                             Mobile No. is <strong>required</strong>
@@ -26,21 +26,24 @@
                     </mat-form-field>
                 </div>
             </div>
-            <div autocomplete="new-password" fxFlex fxlayout="row" fxlayout.lt-md="column">
+            <div fxFlex fxlayout="row" fxlayout.lt-md="column">
                 <div fxFlexFill>
                     <mat-form-field class="w-100">
-                        <input formControlName="emailAddress" matInput type="email" [errorStateMatcher]="matcher"
+                        <input autocomplete="new-password" formControlName="emailAddress" matInput type="email" [errorStateMatcher]="matcher"
                             placeholder="Email">
                         <mat-error *ngIf="signUpForm.controls.emailAddress.hasError('required')">
                             Email is <strong>required</strong>
                         </mat-error>
+                        <mat-error *ngIf="signUpForm.controls.emailAddress.hasError('email')">
+                            Email is <strong>invalid</strong>
+                        </mat-error>
                     </mat-form-field>
                 </div>
             </div>
-            <div autocomplete="new-password" fxFlex fxLayout="row" fxLayout.lt-md="column">
+            <div fxFlex fxLayout="row" fxLayout.lt-md="column">
                 <div fxFlexFill>
                     <mat-form-field class="w-100">
-                        <input formControlName="password" matInput type="password" [errorStateMatcher]="matcher"
+                        <input autocomplete="new-password" formControlName="password" matInput type="password" [errorStateMatcher]="matcher"
                             placeholder="Password">
                         <mat-error *ngIf="signUpForm.controls.password.hasError('required')">
                             Password is <strong>required</strong>
@@ -48,10 +51,10 @@
                     </mat-form-field>
                 </div>
             </div>
-            <div autocomplete="new-password" fxFlex fxLayout="row" fxLayout.lt-md="column">
+            <div fxFlex fxLayout="row" fxLayout.lt-md="column">
                 <div fxFlexFill>
                     <mat-form-field class="w-100">
-                        <input formControlName="confirmPassword" matInput type="password" [errorStateMatcher]="matcher"
+                        <input autocomplete="new-password" formControlName="confirmPassword" matInput type="password" [errorStateMatcher]="matcher"
                             placeholder="Confirm Password">
                         <mat-error *ngIf="signUpForm.controls.confirmPassword.hasError('required')">
                             Confirm Password is <strong>required</strong>
@@ -59,15 +62,15 @@
                     </mat-form-field>
                 </div>
             </div>
-            <div fxFlex  fxLayout="row" fxLayout.lt-md="column" style="margin: 20px 0 30px 0">
-                    <div fxFlex>
-                        Already Sign Up
-                        <!-- <mat-checkbox color="primary">Remember Me</mat-checkbox> -->
-                    </div>
-                    <div fxFlex  fxLayoutAlign="end">
-                        <a (click)="goToLogin()" href="javascript:void(0)">Back to Login</a>
-                    </div>
+            <div fxFlex fxLayout="row" fxLayout.lt-md="column" style="margin: 20px 0 30px 0">
+                <div fxFlex>
+                    Already Sign Up
+                    <!-- <mat-checkbox color="primary">Remember Me</mat-checkbox> -->
                 </div>
+                <div fxFlex fxLayoutAlign="end">
+                    <a (click)="goToLogin()" href="javascript:void(0)">Back to Login</a>
+                </div>
+            </div>
             <div fxFlex fxLayout="row" fxLayout.lt-md="column">
                 <div fxFlexFill>
                     <button type="submit" mat-raised-button color="primary" class="w-100">Sign up</button>

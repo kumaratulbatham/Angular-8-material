@@ -7,7 +7,7 @@
             <div fxFlex fxlayout="row" fxlayout.lt-md="column">
                 <div fxFlexFill>
                     <mat-form-field class="w-100">
-                        <input matInput type="email" formControlName="emailAddress" [errorStateMatcher]="matcher"
+                        <input autocomplete="new-password" matInput type="email" formControlName="emailAddress" [errorStateMatcher]="matcher"
                             placeholder="Email">
                         <mat-error *ngIf="loginForm.controls.emailAddress.hasError('required')">
                             Email is <strong>required</strong>
@@ -21,7 +21,7 @@
             <div fxFlex fxLayout="row" fxLayout.lt-md="column">
                 <div fxFlexFill>
                     <mat-form-field class="w-100">
-                        <input matInput type="password" formControlName="password" [errorStateMatcher]="matcher"
+                        <input autocomplete="new-password" matInput type="password" formControlName="password" [errorStateMatcher]="matcher"
                             placeholder="Password">
                         <mat-error *ngIf="loginForm.controls.password.hasError('required')">
                             Password is <strong>required</strong>
