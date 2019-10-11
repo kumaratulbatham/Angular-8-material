@@ -1,11 +1,12 @@
 const express = require('express');
-
+const bodyParser = require('body-parser');
 const Post = require('./models/post');
 const mongoose = require('mongoose');
 
 const app = express();
 
-console.log('Hereeeeee');
+app.use(bodyParser.json());
+// app.use(bodyParser.urlencoded({ extended: false}));
 
 // mongoose.connect("mongodb+srv://atulk:<9GES0iIkwM0x9aZl>@701-766-2401-whtzk.mongodb.net/test?retryWrites=true&w=majority")
 // .then(() => {
@@ -27,7 +28,14 @@ app.use((req, res, next) => {
     res.setHeader("Access-Control-Allow-Methods", "GET, POST, PATCH, DELETE, PUT, OPTIONS");
     next();
 });
-app.use("/api/signup", (req, res, next) => {
+app.post("/api/signup", (req, res, next) => {
+    const userData = req.body;
+    res.status(200).json({
+        message: 'User signup successfuly',
+        user: userData
+    });
+});
+app.get("/api/getuserlist", (req, res, next) => {
     const userData = [
         { title: 'Name', Secure: 'Data' },
         { title: 'Name', Secure: 'Data' },

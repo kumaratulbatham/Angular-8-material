@@ -12,15 +12,7 @@ export class SignupService {
 
     // For signup functionality
     signup(postdata: any) {
-        return this.httpClient.post('api/signup', postdata)
-            .pipe(
-                map(
-                    (response: any) => { return response; },
-                    (error: any) => { console.log('Error message'); }
-                )
-            );
-
-        return this.http.get(AppConstants.SIGNUP_URL)
+        return this.http.post(AppConstants.SIGNUP_URL, postdata)
             .pipe(
                 map(
                     (response: any) => { return response; },
