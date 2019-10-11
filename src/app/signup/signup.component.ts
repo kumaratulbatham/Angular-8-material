@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ErrorStateMatcherService } from 'src/app/shared/services/error.state.matcher.service';
+import { SignupService } from './signup.service';
 
 @Component({
   selector: 'app-signup',
@@ -13,7 +14,7 @@ export class SignupComponent implements OnInit {
   matcher: any;
 
   constructor(private fb: FormBuilder, private router: Router,
-    private errorState: ErrorStateMatcherService) {
+    private errorState: ErrorStateMatcherService, private signupService: SignupService) {
     this.matcher = this.errorState;
   }
 
@@ -35,8 +36,20 @@ export class SignupComponent implements OnInit {
     if (this.signUpForm.invalid == true) {
       return;
     }
-    console.log(this.signUpForm.controls);
-    this.router.navigate(['/login']);
+    const paramData = {
+      'name': this.signUpForm.value.name,
+      'mobileNo': this.signUpForm.value.mobileNo,
+      'emailAddress': this.signUpForm.value.emailAddress,
+      'password': this.signUpForm.value.password
+    };
+    this.signupService.signup(paramData).subscribe(result => {
+      console.log(result);
+      // this.router.navigate(['/login']);
+    },
+      error => {
+        console.log(error);
+      }
+    );
   }
 
   goToLogin() {

@@ -1,11 +1,12 @@
 export class AppConstants {
     public static API_ENDPOINT = 'http://127.0.0.1:6666/api/';
+    public static API_CONTEXT_PATH = 'api/';
     public static API_SECRET_KEY = 'iReferral';
     public static API_SECRET_PASSWORD = 'iReferral123';
     public static page = 1;
     public static pageSize = 10;
     public static consentType = 1;
-  
+    public static SIGNUP_URL = 'signup';
     public static ALERT_DISMISS_TIMEOUT = 20000; //Set alert dismiss time out in miliseconds
     public static DATE_FORMAT = 'yyyy-MM-dd';
     public static VIEW_DATE_FORMAT = 'dd-MM-yyyy';
