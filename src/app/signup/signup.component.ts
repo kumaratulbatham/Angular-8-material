@@ -39,8 +39,8 @@ export class SignupComponent implements OnInit {
     }
     const paramData = {
       'name': this.signUpForm.value.name,
-      'mobileNo': this.signUpForm.value.mobileNo,
-      'emailAddress': this.signUpForm.value.emailAddress,
+      'mobile_no': this.signUpForm.value.mobileNo,
+      'email': this.signUpForm.value.emailAddress,
       'password': this.signUpForm.value.password
     };
     this.signupService.signup(paramData).subscribe(result => {
