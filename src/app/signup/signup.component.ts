@@ -20,6 +20,7 @@ export class SignupComponent implements OnInit {
 
   ngOnInit() {
     this.getSignUpForm();
+    this.getUserData();
   }
 
   getSignUpForm() {
@@ -43,6 +44,17 @@ export class SignupComponent implements OnInit {
       'password': this.signUpForm.value.password
     };
     this.signupService.signup(paramData).subscribe(result => {
+      console.log(result);
+      // this.router.navigate(['/login']);
+    },
+      error => {
+        console.log(error);
+      }
+    );
+  }
+
+  getUserData(){
+    this.signupService.getAllUsers().subscribe(result => {
       console.log(result);
       // this.router.navigate(['/login']);
     },

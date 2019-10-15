@@ -15,7 +15,7 @@ const config = {
     host: 'localhost',
     user: 'root',
     password: 'root',
-    database: 'test',
+    database: 'mantis_database',
 };
 
 // Create a MySQL pool

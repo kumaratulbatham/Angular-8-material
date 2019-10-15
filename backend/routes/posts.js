@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-
+const pool = require('../models/post');
 
 router.post("/api/signup", (req, res, next) => {
     const userData = req.body;
@@ -10,14 +10,13 @@ router.post("/api/signup", (req, res, next) => {
     });
 });
 router.get("/api/getuserlist", (req, res, next) => {
-    const userData = [
-        { title: 'Name', Secure: 'Data' },
-        { title: 'Name', Secure: 'Data' },
-        { title: 'Name', Secure: 'Data' }
-    ]
-    res.status(200).json({
-        message: 'Message Successfuly',
-        user: userData
+    pool.query('SELECT * FROM mantis_user_table', (error, result) => {
+        if (error) throw error;
+
+        res.status(200).json({
+            'message': 'User List Successfully',
+            'userData': result
+        });
     });
 });
 

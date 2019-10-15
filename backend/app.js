@@ -19,11 +19,6 @@ app.use(bodyParser.json());
 // }).catch(() => {
 //     console.log('Connection Fail');
 // });
-
-// app.use((req, res, next) => {
-//     console.log('First Middleware');
-//     next();
-// });
 app.use((req, res, next) => {
     res.setHeader("Access-Control-Allow-Origin", "*");
     res.setHeader(

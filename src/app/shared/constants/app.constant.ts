@@ -7,6 +7,7 @@ export class AppConstants {
     public static pageSize = 10;
     public static consentType = 1;
     public static SIGNUP_URL = 'signup';
+    public static GET_ALL_USERS_LIST = 'getuserlist';
     public static ALERT_DISMISS_TIMEOUT = 20000; //Set alert dismiss time out in miliseconds
     public static DATE_FORMAT = 'yyyy-MM-dd';
     public static VIEW_DATE_FORMAT = 'dd-MM-yyyy';

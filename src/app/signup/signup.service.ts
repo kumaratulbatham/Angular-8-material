@@ -21,4 +21,16 @@ export class SignupService {
             );
 
     }
+    
+    // For All User Data functionality
+    getAllUsers() {
+        return this.http.get(AppConstants.GET_ALL_USERS_LIST)
+            .pipe(
+                map(
+                    (response: any) => { return response; },
+                    (error: any) => { console.log('Error message'); }
+                )
+            );
+
+    }
 }
