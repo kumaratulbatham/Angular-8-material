@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { first } from 'rxjs/operators';
+import { AuthenticationService } from 'src/app/shared/services/authentication.service';
 import { ErrorStateMatcherService } from 'src/app/shared/services/error.state.matcher.service';
 
 @Component({
@@ -12,7 +14,8 @@ export class LoginComponent implements OnInit {
     loginForm: FormGroup;
     matcher: any;
     constructor(private fb: FormBuilder, private router: Router,
-        private errorState: ErrorStateMatcherService) {
+        private errorState: ErrorStateMatcherService,
+        private authService: AuthenticationService) {
         this.matcher = this.errorState;
     }
 
@@ -31,9 +34,21 @@ export class LoginComponent implements OnInit {
         if (this.loginForm.invalid == true) {
             return;
         }
-        console.log(this.loginForm.controls);
-        localStorage.setItem('isLoggedin', 'true');
-        this.router.navigate(['/dashboard']);
+        this.authService.login(this.loginForm.value.emailAddress, this.loginForm.value.password)
+            .pipe(first())
+            .subscribe(
+                (data: any) => {
+                    if (data.access_token) {
+                        localStorage.setItem("isLoggedin", "true");
+                        this.router.navigate(['/dashboard']);
+                    } else {
+                        console.log('Invalid Email or Password');
+                    }
+                },
+                (error: any) => {
+                    console.log(error);
+                }
+            );;
     }
 
     goForgotPassword() {
