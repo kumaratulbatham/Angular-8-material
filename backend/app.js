@@ -1,11 +1,16 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const Post = require('./models/post');
-const mongoose = require('mongoose');
+const postRoutes = require('./routes/posts');
+// const mongoose = require('mongoose');
+var mysql = require("mysql");
 
 const app = express();
 
 app.use(bodyParser.json());
+
+///src/app/layout/charge-station/components/remote-stop
+// ng g component src/app/layout/charge-station/components/remote-stop 
 // app.use(bodyParser.urlencoded({ extended: false}));
 
 // mongoose.connect("mongodb+srv://atulk:<9GES0iIkwM0x9aZl>@701-766-2401-whtzk.mongodb.net/test?retryWrites=true&w=majority")
@@ -28,23 +33,6 @@ app.use((req, res, next) => {
     res.setHeader("Access-Control-Allow-Methods", "GET, POST, PATCH, DELETE, PUT, OPTIONS");
     next();
 });
-app.post("/api/signup", (req, res, next) => {
-    const userData = req.body;
-    res.status(200).json({
-        message: 'User signup successfuly',
-        user: userData
-    });
-});
-app.get("/api/getuserlist", (req, res, next) => {
-    const userData = [
-        { title: 'Name', Secure: 'Data' },
-        { title: 'Name', Secure: 'Data' },
-        { title: 'Name', Secure: 'Data' }
-    ]
-    res.status(200).json({
-        message: 'Message Successfuly',
-        user: userData
-    });
-});
+app.use(postRoutes);
 
 module.exports = app;
