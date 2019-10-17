@@ -87,12 +87,15 @@ export class AuthenticationService {
         this.authStatusListener.next(false);
         clearTimeout(this.tokenTimer);
         this.clearAuthData();
-        this.router.navigate(["/"]);
+        this.router.navigate(["/login"]);
     }
 
     private clearAuthData() {
-        localStorage.removeItem("token");
-        localStorage.removeItem("expiration");
+        this.currentUserSubject.next(null);
+        localStorage.removeItem('token');
+        localStorage.removeItem('isLoggedin');
+        localStorage.removeItem('expiresin');
+        localStorage.removeItem('currentUser');
     }
 
     public get currentUserValue(): User {
@@ -110,6 +113,8 @@ export class AuthenticationService {
                 console.log(user);
                 const token = user.access_token;
                 this.token = token;
+                this.isAuthenticated = true;
+                this.authStatusListener.next(true);
                 // store user details and jwt token in local storage to keep user logged in between page refreshes
                 localStorage.setItem('currentUser', JSON.stringify(user));
                 // set the expiry time while login

@@ -38,8 +38,8 @@ export class LoginComponent implements OnInit {
             .pipe(first())
             .subscribe(
                 (data: any) => {
+                    console.log(data)
                     if (data.access_token) {
-                        localStorage.setItem("isLoggedin", "true");
                         this.router.navigate(['/dashboard']);
                     } else {
                         console.log('Invalid Email or Password');
