@@ -1,14 +1,15 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http'
-import { SignupService } from './signup.service';
-import { SignupComponent } from './signup.component';
-import { SignupRoutingModule } from './signup.routing.module';
+import { HttpClientModule } from '@angular/common/http';
+import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatInputModule } from '@angular/material/input';
+
+import { AuthenticationService } from '../shared/services/authentication.service';
+import { SignupComponent } from './signup.component';
+import { SignupRoutingModule } from './signup.routing.module';
 
 
 @NgModule({
@@ -24,6 +25,6 @@ import { MatInputModule } from '@angular/material/input';
     MatButtonModule,
     FlexLayoutModule.withConfig({ addFlexToParent: false })
   ],
-  providers: [ SignupService ]
+  providers: [ AuthenticationService ]
 })
 export class SignupModule { }

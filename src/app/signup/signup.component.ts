@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+
 import { ErrorStateMatcherService } from 'src/app/shared/services/error.state.matcher.service';
-import { SignupService } from './signup.service';
+import { AuthenticationService } from '../shared/services/authentication.service';
 
 @Component({
   selector: 'app-signup',
@@ -14,13 +15,12 @@ export class SignupComponent implements OnInit {
   matcher: any;
 
   constructor(private fb: FormBuilder, private router: Router,
-    private errorState: ErrorStateMatcherService, private signupService: SignupService) {
+    private errorState: ErrorStateMatcherService, private authService: AuthenticationService) {
     this.matcher = this.errorState;
   }
 
   ngOnInit() {
     this.getSignUpForm();
-    this.getUserData();
   }
 
   getSignUpForm() {
@@ -43,20 +43,9 @@ export class SignupComponent implements OnInit {
       'email': this.signUpForm.value.emailAddress,
       'password': this.signUpForm.value.password
     };
-    this.signupService.signup(paramData).subscribe(result => {
+    this.authService.signup(paramData).subscribe(result => {
       console.log(result);
-      // this.router.navigate(['/login']);
-    },
-      error => {
-        console.log(error);
-      }
-    );
-  }
-
-  getUserData(){
-    this.signupService.getAllUsers().subscribe(result => {
-      console.log(result);
-      // this.router.navigate(['/login']);
+      this.router.navigate(['/login']);
     },
       error => {
         console.log(error);

@@ -1,13 +1,11 @@
 import { Injectable } from '@angular/core';
-// import { NgxPermissionsService } from 'ngx-permissions';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
-import { AppConstants } from '../constants/app.constant';
-// import { RolePermissions } from '../constants/role-permission.constant';
-import { User } from '../models/user';
-// import { DataSourceService } from './data-source.service';
-import { HttpService } from './http.service';
 import { Router } from '@angular/router';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { map } from 'rxjs/operators';
+
+import { AppConstants } from '../constants/app.constant';
+import { User } from '../models/user';
+import { HttpService } from './http.service';
 
 
 @Injectable({ providedIn: 'root' })
@@ -15,10 +13,86 @@ export class AuthenticationService {
     private currentUserSubject: BehaviorSubject<User>;
     public currentUser: Observable<User>;
     public currentPermissions: any[];
+    private isAuthenticated = false;
+    private token: string;
+    private tokenTimer: any;
+    private authStatusListener = new Subject<boolean>();
 
     constructor(private http: HttpService, private router: Router) {
         this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
         this.currentUser = this.currentUserSubject.asObservable();
+    }
+
+    getToken() {
+        return this.token;
+    }
+
+    getIsAuth() {
+        return this.isAuthenticated;
+    }
+
+    getAuthStatusListener() {
+        return this.authStatusListener.asObservable();
+    }
+
+
+    // For signup functionality
+    signup(postdata: any) {
+        return this.http.post(AppConstants.SIGNUP_URL, postdata)
+            .pipe(
+                map(
+                    (response: any) => { return response; },
+                    (error: any) => { console.log('Error message'); }
+                )
+            );
+    }
+
+    autoAuthUser() {
+        const authInformation = this.getAuthData();
+        if (!authInformation) {
+            return;
+        }
+        const now = new Date();
+        const expiresIn = authInformation.expirationDate.getTime() - now.getTime();
+        if (expiresIn > 0) {
+            this.token = authInformation.token;
+            this.isAuthenticated = true;
+            this.setAuthTimer(expiresIn / 1000);
+            this.authStatusListener.next(true);
+        }
+    }
+
+    private getAuthData() {
+        const token = localStorage.getItem("token");
+        const expirationDate = localStorage.getItem("expiration");
+        if (!token || !expirationDate) {
+            return;
+        }
+        return {
+            token: token,
+            expirationDate: new Date(expirationDate)
+        }
+    }
+
+    private setAuthTimer(duration: number) {
+        console.log("Setting timer: " + duration);
+        this.tokenTimer = setTimeout(() => {
+            this.logout();
+        }, duration * 1000);
+    }
+
+    logout() {
+        this.token = null;
+        this.isAuthenticated = false;
+        this.authStatusListener.next(false);
+        clearTimeout(this.tokenTimer);
+        this.clearAuthData();
+        this.router.navigate(["/"]);
+    }
+
+    private clearAuthData() {
+        localStorage.removeItem("token");
+        localStorage.removeItem("expiration");
     }
 
     public get currentUserValue(): User {
@@ -26,32 +100,32 @@ export class AuthenticationService {
     }
 
     login(username: string, password: string) {
-
-        // const formData = new FormData();
-        // formData.append('email', username);
-        // formData.append('password', password);
         const formData = {
             'email': username,
             'password': password
-          };
-
+        };
         return this.http.postFormData(AppConstants.API_AUTH, formData).pipe(map(user => {
             // login successful if there's a jwt token in the response
             if (user && user.access_token) {
                 console.log(user);
+                const token = user.access_token;
+                this.token = token;
                 // store user details and jwt token in local storage to keep user logged in between page refreshes
                 localStorage.setItem('currentUser', JSON.stringify(user));
-
                 // set the expiry time while login
                 const time_to_login = Date.now() + AppConstants.EXPIRES_IN;
                 localStorage.setItem('expiresin', JSON.stringify(time_to_login));
-
                 this.currentUserSubject.next(user);
                 // this.loadPermission();
             }
             return user;
         }
         ));
+    }
+
+    private saveAuthData(token: string, expirationDate: Date) {
+        localStorage.setItem("token", token);
+        localStorage.setItem("expiration", expirationDate.toISOString());
     }
 
     // loadPermission() {
