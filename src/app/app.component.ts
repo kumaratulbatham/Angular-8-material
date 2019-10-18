@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
+
+import { AuthenticationService } from './shared/services/authentication.service';
 
 @Component({
     selector: 'app-root',
@@ -7,10 +9,16 @@ import { TranslateService } from '@ngx-translate/core';
     styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-    constructor(private translate: TranslateService) {
+    @HostListener('window:unload', ['$event'])
+    unloadHandler(_event) {
+        localStorage.clear();
+    }
+
+    constructor(private translate: TranslateService, private authService: AuthenticationService) {
         translate.setDefaultLang('en');
     }
 
     ngOnInit() {
+        this.authService.autoAuthUser();
     }
 }

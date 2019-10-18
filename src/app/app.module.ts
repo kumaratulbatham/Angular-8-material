@@ -12,6 +12,7 @@ import { DemoMaterialModule } from '../material-module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthInterceptor, ErrorInterceptor } from './shared/helpers';
+import { AuthGuard } from './shared/guard/auth.guard';
 
 // AoT requires an exported function for factories
 export const createTranslateLoader = (http: HttpClient) => {
@@ -46,9 +47,10 @@ export const createTranslateLoader = (http: HttpClient) => {
         })
     ],
     providers: [
+        AuthGuard,
         { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
         { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
     ],
     bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }

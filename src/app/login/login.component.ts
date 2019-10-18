@@ -38,8 +38,8 @@ export class LoginComponent implements OnInit {
             .pipe(first())
             .subscribe(
                 (data: any) => {
-                    console.log(data)
                     if (data.access_token) {
+                        console.log(data);
                         this.router.navigate(['/dashboard']);
                     } else {
                         console.log('Invalid Email or Password');
@@ -48,7 +48,7 @@ export class LoginComponent implements OnInit {
                 (error: any) => {
                     console.log(error);
                 }
-            );;
+            );
     }
 
     goForgotPassword() {

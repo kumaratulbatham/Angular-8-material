@@ -13,7 +13,7 @@ export class AuthenticationService {
     private currentUserSubject: BehaviorSubject<User>;
     public currentUser: Observable<User>;
     public currentPermissions: any[];
-    private isAuthenticated = false;
+    isAuthenticated = false;
     private token: string;
     private tokenTimer: any;
     private authStatusListener = new Subject<boolean>();
@@ -48,23 +48,23 @@ export class AuthenticationService {
     }
 
     autoAuthUser() {
-        const authInformation = this.getAuthData();
-        if (!authInformation) {
-            return;
-        }
-        const now = new Date();
-        const expiresIn = authInformation.expirationDate.getTime() - now.getTime();
-        if (expiresIn > 0) {
-            this.token = authInformation.token;
-            this.isAuthenticated = true;
-            this.setAuthTimer(expiresIn / 1000);
-            this.authStatusListener.next(true);
-        }
+        // const authInformation = this.getAuthData();
+        // if (!authInformation) {
+        //     return;
+        // }
+        // const now = new Date();
+        // const expiresIn = authInformation.expirationDate.getTime() - now.getTime();
+        // if (expiresIn > 0) {
+        //     this.token = authInformation.token;
+        //     this.isAuthenticated = true;
+        //     this.setAuthTimer(expiresIn / 1000);
+        //     this.authStatusListener.next(true);
+        // }
     }
 
     private getAuthData() {
-        const token = localStorage.getItem("token");
-        const expirationDate = localStorage.getItem("expiration");
+        const token = localStorage.getItem("access_token");
+        const expirationDate = localStorage.getItem("expiresIn");
         if (!token || !expirationDate) {
             return;
         }
@@ -74,28 +74,30 @@ export class AuthenticationService {
         }
     }
 
+    /* Logout from the application after expiry time */
     private setAuthTimer(duration: number) {
-        console.log("Setting timer: " + duration);
         this.tokenTimer = setTimeout(() => {
             this.logout();
         }, duration * 1000);
     }
 
     logout() {
-        this.token = null;
+        this.token = '';
         this.isAuthenticated = false;
         this.authStatusListener.next(false);
-        clearTimeout(this.tokenTimer);
         this.clearAuthData();
-        this.router.navigate(["/login"]);
+        console.log(localStorage)
+        // clearTimeout(this.tokenTimer);
+        this.router.navigate(['/login']);
+        
     }
 
     private clearAuthData() {
-        this.currentUserSubject.next(null);
-        localStorage.removeItem('token');
-        localStorage.removeItem('isLoggedin');
-        localStorage.removeItem('expiresin');
         localStorage.removeItem('currentUser');
+        this.currentUserSubject.next(null);
+        localStorage.removeItem('access_token');
+        localStorage.removeItem('expiresIn');
+        // localStorage.clear();
     }
 
     public get currentUserValue(): User {
@@ -110,18 +112,20 @@ export class AuthenticationService {
         return this.http.postFormData(AppConstants.API_AUTH, formData).pipe(map(user => {
             // login successful if there's a jwt token in the response
             if (user && user.access_token) {
-                console.log(user);
                 const token = user.access_token;
                 this.token = token;
                 this.isAuthenticated = true;
                 this.authStatusListener.next(true);
+                const expiresInDuration = user.expiresIn;
+                this.setAuthTimer(expiresInDuration);
                 // store user details and jwt token in local storage to keep user logged in between page refreshes
                 localStorage.setItem('currentUser', JSON.stringify(user));
-                // set the expiry time while login
-                const time_to_login = Date.now() + AppConstants.EXPIRES_IN;
-                localStorage.setItem('expiresin', JSON.stringify(time_to_login));
+                const now = new Date();
+                const expirationDate = new Date(now.getTime() + expiresInDuration * 1000);
                 this.currentUserSubject.next(user);
-                // this.loadPermission();
+               
+                console.log(user);
+                this.saveAuthData(token, expirationDate);
             }
             return user;
         }
@@ -129,8 +133,8 @@ export class AuthenticationService {
     }
 
     private saveAuthData(token: string, expirationDate: Date) {
-        localStorage.setItem("token", token);
-        localStorage.setItem("expiration", expirationDate.toISOString());
+        localStorage.setItem("access_token", token);
+        localStorage.setItem("expiresIn", expirationDate.toISOString());
     }
 
     // loadPermission() {
@@ -146,32 +150,6 @@ export class AuthenticationService {
     //     });
 
     //     this.ngxPermissionsService.loadPermissions(permissions);
-    // }
-
-    // logout() {
-    //     // remove user from local storage to log user out
-    //     let paramData = {
-    //         "auditEvent": "LOGOUT",
-    //     };
-    //     this.sendPrintConsentAudit(paramData).subscribe();
-    //     localStorage.removeItem('currentUser');
-    //     this.currentUserSubject.next(null);
-    //     localStorage.removeItem('disclaimer'); // remove disclaimer for log out to GP user
-    //     localStorage.removeItem("patientDisclaimer"); // remove patient disclaimer for log out to GP user
-    //     localStorage.removeItem('stepIdentified');
-    //     localStorage.removeItem('expiresin');
-    //     this.dataSourceService.setData('');
-    //     this.dataSourceService.setUploadDocumentFlag('');
-    //     localStorage.clear(); // clear all storage value from localstorage
-    //     this.router.navigate(['/login']);
-    // }
-
-    /* Logout from the application after expiry time */
-    // logoutAfterExpires(){
-    //     const timer = JSON.parse(localStorage.getItem('expiresin'));
-    //     if (timer && (Date.now() > timer)) {
-    //         this.logout();
-    //     }
     // }
 
     /* API for Get Patient Guardian Type */

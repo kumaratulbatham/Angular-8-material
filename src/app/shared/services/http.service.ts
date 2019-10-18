@@ -77,9 +77,7 @@ export class HttpService {
 
   private handleError = (error: any) => {
     if (error.status === 401) {
-      localStorage.removeItem('currentUser');
-      localStorage.removeItem('disclaimer'); // remove disclaimer for log out to GP user
-      localStorage.removeItem('patientDisclaimer'); // remove patient disclaimer for log out to GP user
+      localStorage.clear();
       this._router.navigateByUrl('/login');
       return;
     }
