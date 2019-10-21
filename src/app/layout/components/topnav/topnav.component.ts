@@ -3,7 +3,7 @@ import { Router, NavigationEnd } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 
-import { AuthenticationService } from 'src/app/shared/services/authentication.service';
+import { AuthenticationService } from '../../../shared/services/authentication.service';
 
 
 @Component({

@@ -13,6 +13,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthInterceptor, ErrorInterceptor } from './shared/helpers';
 import { AuthGuard } from './shared/guard/auth.guard';
+import { AuthenticationService } from './shared/services/authentication.service';
 
 // AoT requires an exported function for factories
 export const createTranslateLoader = (http: HttpClient) => {
@@ -48,6 +49,7 @@ export const createTranslateLoader = (http: HttpClient) => {
     ],
     providers: [
         AuthGuard,
+        AuthenticationService,
         { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
         { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
     ],

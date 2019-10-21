@@ -8,12 +8,12 @@ import {
 import { Observable, Subscription } from 'rxjs';
 import { AuthenticationService } from '../services/authentication.service';
 
-@Injectable({ providedIn: 'root' })
+@Injectable()
 export class AuthGuard implements CanActivate {
-    userIsAuthenticated = false;
-    private authListenerSubs: Subscription;
-    constructor(private router: Router, private authService: AuthenticationService) {
-        this.userIsAuthenticated = this.authService.isAuthenticated;
+    // userIsAuthenticated = false;
+    // private authListenerSubs: Subscription;
+    constructor(private authService: AuthenticationService, private router: Router) {
+        // this.userIsAuthenticated = this.authService.isAuthenticated;
         // this.authListenerSubs = this.authService
         //     .getAuthStatusListener()
         //     .subscribe(isAuthenticated => {

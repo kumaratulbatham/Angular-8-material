@@ -5,7 +5,6 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DemoMaterialModule } from '../../material-module';
 
-import { AuthenticationService } from '../shared/services/authentication.service';
 import { SignupComponent } from './signup.component';
 import { SignupRoutingModule } from './signup.routing.module';
 
@@ -20,7 +19,6 @@ import { SignupRoutingModule } from './signup.routing.module';
     ReactiveFormsModule,
     DemoMaterialModule,
     FlexLayoutModule.withConfig({ addFlexToParent: false })
-  ],
-  providers: [ AuthenticationService ]
+  ]
 })
 export class SignupModule { }
