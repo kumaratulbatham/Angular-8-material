@@ -31,7 +31,7 @@ export class Screen2Component implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    console.log(this.dataSource)
+    // console.log(this.dataSource)
   }
 
   /** Map and Set Data Structure in Javascript */
