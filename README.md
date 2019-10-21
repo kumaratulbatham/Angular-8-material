@@ -15,7 +15,7 @@ Provides fast, reliable and extensible starter for the development of Angular pr
 `This Application` provides the following features:
 
 *   Developed using Material-v2.0.0
-*   angular-v7.1.0
+*   angular-v8.2.0
 *   angular/cli-v8.3.4
 *   angular/material-v8.2.0
 *   angular/cdk-v8.2.0
