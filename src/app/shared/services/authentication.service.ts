@@ -86,7 +86,6 @@ export class AuthenticationService {
         this.isAuthenticated = false;
         this.authStatusListener.next(false);
         this.clearAuthData();
-        console.log(localStorage)
         clearTimeout(this.tokenTimer);
         this.router.navigate(['/login']);
         
@@ -123,8 +122,6 @@ export class AuthenticationService {
                 const now = new Date();
                 const expirationDate = new Date(now.getTime() + expiresInDuration * 1000);
                 this.currentUserSubject.next(user);
-               
-                console.log(user);
                 this.saveAuthData(token, expirationDate);
             }
             return user;

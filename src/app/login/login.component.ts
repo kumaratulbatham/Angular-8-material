@@ -39,7 +39,6 @@ export class LoginComponent implements OnInit {
             .subscribe(
                 (data: any) => {
                     if (data.access_token) {
-                        console.log(data);
                         this.router.navigate(['/dashboard']);
                     } else {
                         console.log('Invalid Email or Password');
