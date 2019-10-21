@@ -13,7 +13,7 @@ export class AuthenticationService {
     private currentUserSubject: BehaviorSubject<User>;
     public currentUser: Observable<User>;
     public currentPermissions: any[];
-    isAuthenticated = false;
+    private isAuthenticated = false;
     private token: string;
     private tokenTimer: any;
     private authStatusListener = new Subject<boolean>();
@@ -48,18 +48,18 @@ export class AuthenticationService {
     }
 
     autoAuthUser() {
-        // const authInformation = this.getAuthData();
-        // if (!authInformation) {
-        //     return;
-        // }
-        // const now = new Date();
-        // const expiresIn = authInformation.expirationDate.getTime() - now.getTime();
-        // if (expiresIn > 0) {
-        //     this.token = authInformation.token;
-        //     this.isAuthenticated = true;
-        //     this.setAuthTimer(expiresIn / 1000);
-        //     this.authStatusListener.next(true);
-        // }
+        const authInformation = this.getAuthData();
+        if (!authInformation) {
+            return;
+        }
+        const now = new Date();
+        const expiresIn = authInformation.expirationDate.getTime() - now.getTime();
+        if (expiresIn > 0) {
+            this.token = authInformation.token;
+            this.isAuthenticated = true;
+            this.setAuthTimer(expiresIn / 1000);
+            this.authStatusListener.next(true);
+        }
     }
 
     private getAuthData() {
@@ -87,7 +87,7 @@ export class AuthenticationService {
         this.authStatusListener.next(false);
         this.clearAuthData();
         console.log(localStorage)
-        // clearTimeout(this.tokenTimer);
+        clearTimeout(this.tokenTimer);
         this.router.navigate(['/login']);
         
     }
@@ -97,7 +97,7 @@ export class AuthenticationService {
         this.currentUserSubject.next(null);
         localStorage.removeItem('access_token');
         localStorage.removeItem('expiresIn');
-        // localStorage.clear();
+        localStorage.clear();
     }
 
     public get currentUserValue(): User {

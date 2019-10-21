@@ -9,10 +9,10 @@ import { AuthenticationService } from './shared/services/authentication.service'
     styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-    @HostListener('window:unload', ['$event'])
-    unloadHandler(_event) {
-        localStorage.clear();
-    }
+    // @HostListener('window:unload', ['$event'])
+    // unloadHandler(_event) {
+    //     localStorage.clear();
+    // }
 
     constructor(private translate: TranslateService, private authService: AuthenticationService) {
         translate.setDefaultLang('en');
