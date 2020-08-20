@@ -27,7 +27,7 @@
     "@angular/router": "8.2.6",
     "@ngx-translate/core": "11.0.1",
     "@ngx-translate/http-loader": "4.0.0",
-    "bcrypt": "^3.0.6",
+    "bcrypt": "^5.0.0",
     "chart.js": "2.7.3",
     "core-js": "2.5.7",
     "express": "^4.17.1",
